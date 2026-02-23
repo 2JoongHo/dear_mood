@@ -16,15 +16,21 @@ import Notfound from "./pages/Notfound";
 const mockData = [
   {
     id: 1,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2026-02-23").getTime(),
     emotionId: 1,
     content: "1번 일기 내용",
   },
   {
     id: 2,
-    createdDate: new Date().getTime(),
+    createdDate: new Date("2026-02-22").getTime(),
     emotionId: 2,
     content: "2번 일기 내용",
+  },
+  {
+    id: 3,
+    createdDate: new Date("2026-01-07").getTime(),
+    emotionId: 3,
+    content: "3번 일기 내용",
   },
 ];
 
@@ -41,8 +47,8 @@ function reducer(state, action) {
   }
 }
 
-const DiaryStateContext = createContext();
-const DiaryDispatchContext = createContext();
+export const DiaryStateContext = createContext();
+export const DiaryDispatchContext = createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, mockData);
@@ -84,30 +90,8 @@ function App() {
 
   return (
     <>
-      <button
-        onClick={() => {
-          onCreate(new Date().getTime(), 1, "Hello");
-        }}
-      >
-        일기 추가 테스트
-      </button>
-      <button
-        onClick={() => {
-          onUpdate(1, new Date().getTime(), 3, "수정된 일기입니다.");
-        }}
-      >
-        일기 수정 테스트
-      </button>
-      <button
-        onClick={() => {
-          onDelete(1);
-        }}
-      >
-        일기 삭제 테스트
-      </button>
-
-      <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
-        <DiaryStateContext.Provider value={data}>
+      <DiaryStateContext.Provider value={data}>
+        <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
           {/* 경로 */}
           <Routes>
             <Route path="/" element={<Home />} />
@@ -116,8 +100,8 @@ function App() {
             <Route path="/edit/:id" element={<Edit />} />
             <Route path="*" element={<Notfound />} />
           </Routes>
-        </DiaryStateContext.Provider>
-      </DiaryDispatchContext.Provider>
+        </DiaryDispatchContext.Provider>
+      </DiaryStateContext.Provider>
     </>
   );
 }
