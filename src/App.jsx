@@ -1,8 +1,8 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { useReducer } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Button from "./components/Button";
-import Header from "./components/Header";
 import Diary from "./pages/Diary";
+import Edit from "./pages/Edit";
 import Home from "./pages/Home";
 import New from "./pages/New";
 import Notfound from "./pages/Notfound";
@@ -13,52 +13,36 @@ import Notfound from "./pages/Notfound";
 // 2. "/new" : 새로운 일기를 작성하는 New 페이지
 // 3. "/diary" : 일기를 상세히 조회하는 Diary 페이지
 
-function App() {
-  // New 페이지로 이동 버튼
-  const nav = useNavigate();
+const mockData = [
+  {
+    id: 1,
+    createdDate: new Date().getTime(),
+    emotionId: 1,
+    content: "1번 일기 내용",
+  },
+  {
+    id: 2,
+    createdDate: new Date().getTime(),
+    emotionId: 2,
+    content: "2번 일기 내용",
+  },
+];
 
-  const onClickButton = () => {
-    nav("/new");
-  };
+function reducer(state, action) {
+  return state;
+}
+
+function App() {
+  const [data, dispatch] = useReducer(reducer, mockData);
 
   return (
     <>
-      {/* 헤더 */}
-      <Header
-        title={"Header"}
-        leftChild={<Button text={"Left"} />}
-        rightChild={<Button text={"Right"} />}
-      />
-
-      {/* 감정 버튼 - 기본 */}
-      <Button
-        text={"123"}
-        type={"DEFAULT"}
-        onClick={() => {
-          console.log("123번 버튼 클릭");
-        }}
-      />
-      {/* 감정 버튼 - 긍정 */}
-      <Button
-        text={"123"}
-        type={"POSITIVE"}
-        onClick={() => {
-          console.log("123번 버튼 클릭");
-        }}
-      />
-      {/* 감정 버튼 - 부정 */}
-      <Button
-        text={"123"}
-        type={"NEGATIVE"}
-        onClick={() => {
-          console.log("123번 버튼 클릭");
-        }}
-      />
       {/* 경로 */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<New />} />
         <Route path="/diary/:id" element={<Diary />} />
+        <Route path="/edit/:id" element={<Edit />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </>
