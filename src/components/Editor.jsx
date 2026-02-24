@@ -64,8 +64,6 @@ const Editor = () => {
     });
   };
 
-  const emotionId = 1;
-
   return (
     <div className="Editor">
       {/* 날짜 선택 섹션 */}
@@ -91,9 +89,17 @@ const Editor = () => {
           <EmotionItem emotionId={5} emotionName={"끔찍함"} /> */}
           {emotionList.map((item) => (
             <EmotionItem
+              onClick={() =>
+                onChangeInput({
+                  target: {
+                    name: "emotionId",
+                    value: item.emotionId,
+                  },
+                })
+              }
               key={item.emotionId}
               {...item}
-              isSelected={item.emotionId === emotionId}
+              isSelected={item.emotionId === input.emotionId}
             />
           ))}
         </div>
