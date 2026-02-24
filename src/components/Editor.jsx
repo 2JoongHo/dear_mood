@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import "./Editor.css";
 import EmotionItem from "./EmotionItem";
@@ -49,6 +50,8 @@ const Editor = ({ onSubmit }) => {
     emotionId: 3,
     content: "",
   });
+
+  const nav = useNavigate();
 
   const onChangeInput = (e) => {
     let name = e.target.name;
@@ -122,7 +125,7 @@ const Editor = ({ onSubmit }) => {
 
       {/* 취소, 완료 버튼 섹션 */}
       <section className="button_section">
-        <Button text={"취소하기"} />
+        <Button onClick={() => nav(-1)} text={"취소하기"} />
         <Button
           onClick={onClickSubmitButton}
           text={"작성완료"}

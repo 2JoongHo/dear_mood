@@ -11,6 +11,8 @@ const New = () => {
 
   const onSubmit = (input) => {
     onCreate(input.createdDate.getTime(), input.emotionId, input.content);
+    // 일기가 추가 된 후 홈페이지로 이동, 뒤로가기 방지
+    nav("/", { replace: true });
   };
 
   return (
