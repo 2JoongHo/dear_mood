@@ -1,4 +1,4 @@
-import { useReducer, useRef, createContext } from "react";
+import { createContext, useReducer, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Diary from "./pages/Diary";
@@ -40,7 +40,7 @@ function reducer(state, action) {
       return [action.data, ...state];
     case "UPDATE":
       return state.map((item) =>
-        String(item.id) === String(action.data.id) ? action.data : item,
+        String(item.id) === String(action.data.id) ? action.data : item
       );
     case "DELETE":
       return state.filter((item) => String(item.id) !== String(action.id));
