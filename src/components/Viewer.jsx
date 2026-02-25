@@ -2,7 +2,10 @@ import "./Viewer.css";
 import { getEmotionImage } from "../util/get-emotion-images";
 import { emotionList } from "../util/constants";
 
+// 일기 상세보기 컴포넌트
+
 const Viewer = ({ emotionId, content }) => {
+  // list에서 ID와 일치하는 감정 객체 찾기
   const emotionItem = emotionList.find(
     (item) => String(item.emotionId) === String(emotionId),
   );
@@ -22,6 +25,7 @@ const Viewer = ({ emotionId, content }) => {
       <section className="content_section">
         <h4>오늘의 일기</h4>
         <div className="content_wrapper">
+          {/* 일기 내용 렌더링 */}
           <p>{content}</p>
         </div>
       </section>

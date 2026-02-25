@@ -4,6 +4,8 @@ import emotion3 from "./../assets/emotion3.png";
 import emotion4 from "./../assets/emotion4.png";
 import emotion5 from "./../assets/emotion5.png";
 
+// 감정 이미지 반환 함수
+
 export function getEmotionImage(emotionId) {
   switch (emotionId) {
     case 1:

@@ -1,3 +1,5 @@
+// 잘못 된 페이지로 이동 시 표기
+
 const Notfound = () => {
   return <div>잘못 된 페이지입니다.</div>;
 };

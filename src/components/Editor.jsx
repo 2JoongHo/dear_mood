@@ -4,19 +4,20 @@ import Button from "./Button";
 import "./Editor.css";
 import EmotionItem from "./EmotionItem";
 import { emotionList } from "../util/constants";
-import {getStringedDate} from "../util/get-stringed-date"
+import { getStringedDate } from "../util/get-stringed-date";
 
-
+// 일기 편집 컴포넌트
 
 const Editor = ({ onSubmit, initData }) => {
+  // 입력 폼의 상태
   const [input, setInput] = useState({
     createdDate: new Date(),
     emotionId: 3,
     content: "",
   });
-
+  // 페이지 이동을 위한 네비게이트 함수
   const nav = useNavigate();
-
+  // 기존 데이터 로드
   useEffect(() => {
     if (initData) {
       setInput({
@@ -25,11 +26,11 @@ const Editor = ({ onSubmit, initData }) => {
       });
     }
   }, [initData]);
-
+  // 통합 입력 이벤트 핸들러
   const onChangeInput = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-
+    // 날짜입력은 문자열을 Date 객체로 변경
     if (name === "createdDate") {
       value = new Date(value);
     }
@@ -39,7 +40,7 @@ const Editor = ({ onSubmit, initData }) => {
       [name]: value,
     });
   };
-
+  // 저장버튼 클릭 이벤트 핸들러
   const onClickSubmitButton = () => {
     onSubmit(input);
   };
@@ -61,12 +62,7 @@ const Editor = ({ onSubmit, initData }) => {
       <section className="emotion_section">
         <h4>오늘의 감정</h4>
         <div className="emotion_list_wrapper">
-          {/* 좋은 방식은 아님 */}
-          {/* <EmotionItem emotionId={1} emotionName={"완전 좋음"} />
-          <EmotionItem emotionId={2} emotionName={"좋음"} />
-          <EmotionItem emotionId={3} emotionName={"그럭저럭"} />
-          <EmotionItem emotionId={4} emotionName={"나쁨"} />
-          <EmotionItem emotionId={5} emotionName={"끔찍함"} /> */}
+          {/* EmotionItem 순회하며 렌더링 */}
           {emotionList.map((item) => (
             <EmotionItem
               onClick={() =>
@@ -79,6 +75,7 @@ const Editor = ({ onSubmit, initData }) => {
               }
               key={item.emotionId}
               {...item}
+              // 선택된 감정 판별하여 전달
               isSelected={item.emotionId === input.emotionId}
             />
           ))}

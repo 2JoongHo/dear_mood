@@ -1,4 +1,5 @@
 // 감정 이모션 리스트
+
 export const emotionList = [
   {
     emotionId: 1,
