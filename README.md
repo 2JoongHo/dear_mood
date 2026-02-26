@@ -1,3 +1,5 @@
+![감정 일기장](./public/dear_mood.png)
+
 # 📑 Dear mood (감정 일기장)
 
 > **오늘의 감정을 기록하고 시각적으로 회고하는 다이어리 서비스**
@@ -62,4 +64,5 @@ npm install
 ```
 npm start
 ```
+
 
